@@ -27,7 +27,7 @@ namespace Week9_1.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetPage")]
         public IActionResult Get(int id)
         {
             var page = repository.Find(id);
