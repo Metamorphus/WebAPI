@@ -46,6 +46,11 @@ namespace Week9_1.Controllers
             {
                 return BadRequest();
             }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             repository.Add(page);
             return CreatedAtRoute("GetPage", new { id = page.PageId }, page);
         }
@@ -54,7 +59,7 @@ namespace Week9_1.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Page page)
         {
-            if (page == null || page.PageId != id)
+            if (page == null)
             {
                 return BadRequest();
             }
@@ -64,6 +69,7 @@ namespace Week9_1.Controllers
             {
                 return NotFound();
             }
+            page.PageId = id;
 
             repository.Update(page);
             return new NoContentResult();
