@@ -21,7 +21,7 @@ namespace Week9_1.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Page> Get(string titleSearch = null, int page = 0, int pageSize = 10)
+        public IEnumerable<Page> Get(string titleSearch = null, int page = 0, int pageSize = 1000)
         {
             return repository.GetAll(titleSearch, page, pageSize);
         }
