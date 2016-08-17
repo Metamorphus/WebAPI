@@ -1,0 +1,22 @@
+@model Week9_3.Models.Page
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <label>Page URL: </label> @Html.DisplayFor(model => model.UrlName) <br />
+    <label>Title: </label> @Html.DisplayFor(model => model.Title) <br />
+    <label>Description: </label> @Html.DisplayFor(model => model.Description) <br />
+    <label>Added at: </label> @Html.DisplayFor(model => model.AddedDate) <br />
+    <label>Content: </label> <br />
+    <div style="border:3px; border-style:solid; border-color:black; padding:1em; margin-top:1em; margin-bottom: 2em;">
+        @Html.Raw(Model.Content)
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PageId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

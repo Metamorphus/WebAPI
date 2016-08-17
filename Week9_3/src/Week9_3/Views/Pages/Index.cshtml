@@ -1,0 +1,94 @@
+@model Week9_3.Models.PagesListModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Pages" asp-action="Index" method="get">
+    URL: <input type="text" name="urlSearch">
+    Title: <input type="text" name="titleSearch">
+    <input type="submit" value="Filter" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pages[0].UrlName)&nbsp;
+                <a asp-action="Index" asp-route-order="UrlAsc">&#9660;</a>
+                <a asp-action="Index" asp-route-order="UrlDesc">&#9650;</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pages[0].Title)&nbsp;
+                <a asp-action="Index" asp-route-order="TitleAsc">&#9660;</a>
+                <a asp-action="Index" asp-route-order="TitleDesc">&#9650;</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pages[0].Content)&nbsp;
+                <a asp-action="Index" asp-route-order="ContAsc">&#9660;</a>
+                <a asp-action="Index" asp-route-order="ContDesc">&#9650;</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pages[0].AddedDate)&nbsp;
+                <a asp-action="Index" asp-route-order="DateAsc">&#9660;</a>
+                <a asp-action="Index" asp-route-order="DateDesc">&#9650;</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pages[0].Description)&nbsp;
+                <a asp-action="Index" asp-route-order="DescAsc">&#9660;</a>
+                <a asp-action="Index" asp-route-order="DescDesc">&#9650;</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.pages)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrlName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PageId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PageId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PageId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Page @(Model.CurPage + 1) of @Model.MaxPage</p>
+
+@if (Model.CurPage > 0)
+{
+    <a asp-action="Index" asp-route-pagenumber=@(Model.CurPage-1)>
+        &laquo; Prev
+    </a>
+}
+@(Model.CurPage + 1)
+@if (Model.CurPage < Model.MaxPage - 1)
+{
+    <a asp-action="Index" asp-route-pagenumber=@(Model.CurPage+1)>
+        Next &raquo;
+    </a>
+}
+

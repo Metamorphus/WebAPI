@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Week9_3.Models.Page>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3>Random pages: </h3>
+@foreach (var item in Model)
+{
+    <a asp-controller="Pages" asp-action="Details" asp-route-id="@item.PageId">
+        @Html.DisplayFor(p => item.UrlName)
+    </a>
+    <br />
+}
+
