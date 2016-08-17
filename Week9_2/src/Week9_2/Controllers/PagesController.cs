@@ -74,7 +74,6 @@ namespace Week9_2.Controllers
             if (ModelState.IsValid)
             {
                 var client = new HttpClient();
-                page.PageId = 888;
                 var jsonString = JsonConvert.SerializeObject(page);
                 var content = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
                 await client.PostAsync("http://localhost:65013/api/pages", content);
